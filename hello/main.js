@@ -1,6 +1,7 @@
-$(document).ready(function(){
+window.onload = function(){
 
-  var canvas = $('canvas')[0];
+  // Grab the canvas
+  var canvas = document.getElementById('game');
   var context = canvas.getContext('2d');
 
   var width = canvas.width;
@@ -11,7 +12,9 @@ $(document).ready(function(){
   var wall = 0.9;
   var velocity = 0;
   var dt = 1.0/30.0;
+  var scale = 0.005;
 
+  // Set a callback
   window.setInterval(function(){
 
     // Clear canvas
@@ -19,8 +22,8 @@ $(document).ready(function(){
 
     // Physics
     var gravity = 9.8;
-    velocity = velocity + gravity * dt;
-    ball = ball + velocity * 0.005;
+    velocity = velocity + gravity * dt * scale;
+    ball = ball + velocity;
 
     // Collision
     if ( (ball + radius) > wall){
@@ -38,5 +41,5 @@ $(document).ready(function(){
     context.fillRect(0, wall * height, width, (1-wall) * height);
   }, 1000 * dt);
 
-});
+}
 
