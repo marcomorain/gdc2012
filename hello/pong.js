@@ -13,12 +13,14 @@ window.onload = function(){
   var velocity = 0;
   var dt = 1.0/30.0;
   var scale = 0.005;
-  
-  
-  var bat = 0.3;
+
+  // Keep track of the bat's x position
+  // and width
+  var bat = 0;
   var bat_width = 0.2;
-  
-  
+
+  // When the mouse moves on the canvas
+  // move the bat with it
   canvas.onmousemove = function(event){
     bat = event.clientX / width;
   };
@@ -35,13 +37,16 @@ window.onload = function(){
     ball = ball + velocity;
 
     // Collision
+    // Need to account for bat x-position
     if ( (ball + radius) > wall &&
           (bat - bat_width) < 0.5 &&
           (bat + bat_width) > 0.5) {
-            ball = wall - radius;
-            velocity = -velocity;
+      ball = wall - radius;
+      velocity = -velocity;
     }
-    
+
+    // If the ball falls below the bat
+    // reset the ball
     if (ball > 1){
       ball = 0.1;
       velocity = 0;

@@ -20,7 +20,7 @@ window.onload = function(){
     // Clear canvas
     canvas.width = canvas.width;
 
-    // Physics
+    // Physics integration
     var gravity = 9.8;
     velocity = velocity + gravity * dt * scale;
     ball = ball + velocity;
